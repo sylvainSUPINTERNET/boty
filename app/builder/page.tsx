@@ -1,192 +1,30 @@
 
-//"use client";
+// "use client";
+import { Suspense, useEffect } from 'react'
+import Compo from '../components/Compo'
+import { ErrorBoundary } from 'next/dist/client/components/error-boundary'
+import CompoError from '../components/CompoError'
 
-export default function Builder () 
-{
+export default function Builder () {
+
+
   return (
     <div className="mt-5">
 
-        <footer className="w-3/4 fixed bottom-0 left-0 z-20 w-full p-4 bg-white border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
-            <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" className="hover:underline">Flowbite™</a>. All Rights Reserved.
-            </span>
-            <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-                <li>
-                    <a href="#" className="hover:underline me-4 md:me-6">About</a>
-                </li>
-                <li>
-                    <a href="#" className="hover:underline me-4 md:me-6">Privacy Policy</a>
-                </li>
-                <li>
-                    <a href="#" className="hover:underline me-4 md:me-6">Licensing</a>
-                </li>
-                <li>
-                    <a href="#" className="hover:underline">Contact</a>
-                </li>
-            </ul>
-        </footer>
-        
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-      <p>XD</p>
-
-      {/* <Dropdown>
-        <DropdownTrigger>
-            <Button 
-              variant="bordered" 
-            >
-              Open Menu
-            </Button>
-          </DropdownTrigger>
-          <DropdownMenu aria-label="Static Actions">
-            <DropdownItem key="new">New file</DropdownItem>
-            <DropdownItem key="copy">Copy link</DropdownItem>
-            <DropdownItem key="edit">Edit file</DropdownItem>
-            <DropdownItem key="delete" classNameName="text-danger" color="danger">
-              Delete file
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown> */}
-
-
+      <div className="mx-auto container">
+        <div className='mt-[3em] bg-blue-600'>
+        {/* <ErrorBoundary> is automatically managed by error.tsx on the segment ( builder ). Here we use custom component for error ..*/}
+        {
+            Array.from({length: 52}).map((_, i) => (
+              <ErrorBoundary key={i} errorComponent={CompoError}>
+                <Suspense fallback={<p>Loading component ...</p>}>
+                  <Compo></Compo>
+                </Suspense>
+              </ErrorBoundary>
+            ))
+          }
+        </div>
+      </div>
 
     </div>
   )
