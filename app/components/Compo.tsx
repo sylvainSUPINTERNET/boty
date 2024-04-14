@@ -26,6 +26,7 @@ import { wait } from "../lib/posts"
 async function Compo() {
 
     await wait( Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000 )
+    
     return ( 
         <div>
             <p>xm</p>
