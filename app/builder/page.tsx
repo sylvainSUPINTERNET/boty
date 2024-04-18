@@ -7,7 +7,7 @@ import Board from '../components/board/Board';
 
 export default function Builder () {
   return (
-    <div className="mx-auto container h-screen">
+    <div className="mx-auto h-screen">
       
       <Board></Board>
       {/* <div className="mx-auto container h-screen">
