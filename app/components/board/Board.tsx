@@ -10,9 +10,9 @@ const Board = () => {
                 <Image
                         src="/bot.png"
                         alt="Logo"
-                        className="dark:invert"
-                        width={100}
-                        height={24}
+                        className="dark:invert py-0.5 ml-1"
+                        width={56}
+                        height={10}
                         priority
                     />
             </div>
