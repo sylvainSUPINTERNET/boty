@@ -1,24 +1,63 @@
-import React, { useEffect, useRef } from 'react';
-import Image from 'next/image';
+import React, { useState } from 'react';
+import {Button} from "@nextui-org/react";
+import { FaBeer } from "react-icons/fa";
 
 const Board = () => {
-    return ( 
 
-        <div className='mx-auto container h-screen'>
-            <div className='p-6 text-5xl font-extrabold leading-tight flex'>
-                <p>TypeBot</p>
-                <Image
-                        src="/bot.png"
-                        alt="Logo"
-                        className="dark:invert py-0.5 ml-1"
-                        width={56}
-                        height={10}
-                        priority
-                    />
+    const [m, setM] = useState({
+        bubbles: {
+            "title": "Bubbles",
+            menu: [
+                {
+                    title: "Text",
+                    icon: <FaBeer></FaBeer>
+                }
+            ]
+        },
+        inputs: [],
+        logics: [],
+        integrations: []
+    });
+
+    return ( 
+        <div className="mx-auto container bg-red-600">
+            <div className='flex'>
+                <div className='w-[30%]'>
+                    <Button color="primary" variant="shadow">
+                        Shadow
+                    </Button>
+                    <Button color="primary" variant="shadow">
+                        Shadow
+                    </Button>
+
+                    <div>
+                        {
+                            m.bubbles.menu.map((item, index) => {
+                                return (
+                                    <div key={index} className='flex'>
+                                        <p>{item.title}</p>
+                                        <p>{item.icon}</p>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+                <div className='w-[70%] bg-green-100'>
+                    <p>Get Started</p>
+                    <p>Get Started</p>
+                    <p>Get Started</p>
+                    <p>Get Started</p>
+                    <p>Get Started</p>
+                    <p>Get Started</p>
+                    <p>Get Started</p>
+                    <p>Get Started</p>
+                    <p>Get Started</p>
+                    <p>Get Started</p>
+                    <p>Get Started</p>
+                </div>
             </div>
-            {/* <div className='px-2 text-xl text-[#666666]'>
-                    MMMp
-                </div> */}
+
         </div>
     )
 }
