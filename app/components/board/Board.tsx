@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
 import {Button} from "@nextui-org/react";
-import { FaBeer } from "react-icons/fa";
+import { FaBeer, FaTextWidth } from "react-icons/fa";
+import { FaHandsBubbles } from 'react-icons/fa6';
+import { CgFormatText, CgImage } from "react-icons/cg";
+import { DndContext } from '@dnd-kit/core';
+import {useDroppable} from '@dnd-kit/core';
 
 const Board = () => {
 
-    const [m, setM] = useState({
+    const [parent, setParent] = useState(null);
+
+    const [menuItems, setMenuItems] = useState({
         bubbles: {
             "title": "Bubbles",
             menu: [
                 {
                     title: "Text",
-                    icon: <FaBeer></FaBeer>
+                    icon: <CgFormatText className="ml-1" size={24}/>
+                },
+                {
+                    title: "Image",
+                    icon: <CgImage className="ml-1" size={24}/>
                 }
             ]
         },
@@ -19,24 +29,21 @@ const Board = () => {
         integrations: []
     });
 
+    function handleDragEnd ({over}: {over:any}) {
+        setParent(over ? over.id : null);
+    }
+
     return ( 
         <div className="mx-auto container bg-red-600">
             <div className='flex'>
                 <div className='w-[30%]'>
-                    <Button color="primary" variant="shadow">
-                        Shadow
-                    </Button>
-                    <Button color="primary" variant="shadow">
-                        Shadow
-                    </Button>
-
-                    <div>
+                    <div className='flex space-x-1 p-2'>
                         {
-                            m.bubbles.menu.map((item, index) => {
+                            menuItems.bubbles.menu.map((item, index) => {
                                 return (
-                                    <div key={index} className='flex'>
+                                    <div key={index} className='flex bg-blue-200 rounded-lg py-1 px-1'>
                                         <p>{item.title}</p>
-                                        <p>{item.icon}</p>
+                                        <div>{item.icon}</div>
                                     </div>
                                 )
                             })
@@ -44,20 +51,22 @@ const Board = () => {
                     </div>
                 </div>
                 <div className='w-[70%] bg-green-100'>
-                    <p>Get Started</p>
-                    <p>Get Started</p>
-                    <p>Get Started</p>
-                    <p>Get Started</p>
-                    <p>Get Started</p>
-                    <p>Get Started</p>
-                    <p>Get Started</p>
-                    <p>Get Started</p>
-                    <p>Get Started</p>
-                    <p>Get Started</p>
-                    <p>Get Started</p>
+                    <DndContext onDragEnd={handleDragEnd}>
+                        {/* https://dndkit.com/ */}
+                        <p>Get Started</p>
+                        <p>Get Started</p>
+                        <p>Get Started</p>
+                        <p>Get Started</p>
+                        <p>Get Started</p>
+                        <p>Get Started</p>
+                        <p>Get Started</p>
+                        <p>Get Started</p>
+                        <p>Get Started</p>
+                        <p>Get Started</p>
+                        <p>Get Started</p>
+                    </DndContext>
                 </div>
             </div>
-
         </div>
     )
 }
