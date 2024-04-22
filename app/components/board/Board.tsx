@@ -1,24 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Button} from "@nextui-org/react";
 import { FaBeer, FaTextWidth } from "react-icons/fa";
 import { FaHandsBubbles } from 'react-icons/fa6';
 import { CgFormatText, CgImage } from "react-icons/cg";
-import { DndContext } from '@dnd-kit/core';
-import {useDroppable} from '@dnd-kit/core';
+import {DragOverlay, useDroppable} from '@dnd-kit/core';
+import {useDraggable} from '@dnd-kit/core';
+
+import {DndContext} from '@dnd-kit/core';
+import {Draggable} from '../Draggable';
+import {Droppable} from '../Droppable';
+
+import { nanoid } from 'nanoid'
 
 const Board = () => {
 
-    const [parent, setParent] = useState(null);
+    // const [parent, setParent] = useState(null);
+
+    const [parents, setParents]: any = useState([])
+    const [activeId, setActiveId] = useState(null);
 
     const [menuItems, setMenuItems] = useState({
         bubbles: {
             "title": "Bubbles",
             menu: [
                 {
+                    techId: nanoid(),
                     title: "Text",
                     icon: <CgFormatText className="ml-1" size={24}/>
                 },
                 {
+                    techId: nanoid(),
                     title: "Image",
                     icon: <CgImage className="ml-1" size={24}/>
                 }
@@ -29,43 +40,62 @@ const Board = () => {
         integrations: []
     });
 
+
+    useEffect( () => {
+        console.log(parents);
+    }, [parents]);
+
     function handleDragEnd ({over}: {over:any}) {
-        setParent(over ? over.id : null);
+        if ( over && over.id ) {
+            setParents([...parents, over.id])
+        }
     }
+
+    function handleDragStart( event:any ) {
+        setActiveId(event.active.id)
+    }
+
 
     return ( 
         <div className="mx-auto container bg-red-600">
             <div className='flex'>
-                <div className='w-[30%]'>
-                    <div className='flex space-x-1 p-2'>
-                        {
-                            menuItems.bubbles.menu.map((item, index) => {
-                                return (
-                                    <div key={index} className='flex bg-blue-200 rounded-lg py-1 px-1'>
-                                        <p>{item.title}</p>
-                                        <div>{item.icon}</div>
-                                    </div>
-                                )
-                            })
-                        }
+                <DndContext onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
+                    <div className='w-[30%]'>
+                        <div className='flex space-x-1 p-2'>
+                            {
+                                menuItems.bubbles.menu.map((item, index) => {
+                                    return (
+                                        <Draggable id={`${item.techId}`}>
+                                            <div key={index} className='flex bg-blue-200 rounded-lg py-1 px-1'>
+                                                <p>{item.title}</p>
+                                                <div>{item.icon}</div>
+                                            </div>
+                                        </Draggable>
+                                    );
+                                })
+                            }
+                        </div>
                     </div>
-                </div>
-                <div className='w-[70%] bg-green-100'>
-                    <DndContext onDragEnd={handleDragEnd}>
-                        {/* https://dndkit.com/ */}
-                        <p>Get Started</p>
-                        <p>Get Started</p>
-                        <p>Get Started</p>
-                        <p>Get Started</p>
-                        <p>Get Started</p>
-                        <p>Get Started</p>
-                        <p>Get Started</p>
-                        <p>Get Started</p>
-                        <p>Get Started</p>
-                        <p>Get Started</p>
-                        <p>Get Started</p>
-                    </DndContext>
-                </div>
+                    <div className='w-[70%] bg-green-100'>
+
+                        <Droppable id="droppable">
+                            {
+                                parents.length > 0 ? parents.length : "DROP HERE FDP"
+                            }
+                        </Droppable>
+
+                    </div>
+                    <DragOverlay dropAnimation={null}> {/** here to disable animation, div not "go back" to the menu with animation */}
+                        {
+                            activeId ? 
+                                <div key={activeId} className='flex bg-blue-200 rounded-lg py-1 px-1'>
+                                    <p>{menuItems.bubbles.menu.filter(mitem => mitem.techId  === activeId )[0].title}</p>
+                                    <div>{menuItems.bubbles.menu.filter(mitem => mitem.techId  === activeId )[0].icon}</div>
+                                </div>
+                            : null
+                        }
+                    </DragOverlay>
+                </DndContext>
             </div>
         </div>
     )
