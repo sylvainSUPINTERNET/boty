@@ -18,6 +18,7 @@ const Board = () => {
 
     const [parents, setParents]: any[] = useState([])
     const [activeId, setActiveId] = useState(null);
+    const [currentDragged, setCurrentDragged]: any[] = useState([]);
 
     const [menuItems, setMenuItems] = useState({
         bubbles: {
@@ -43,11 +44,12 @@ const Board = () => {
 
     useEffect( () => {
         console.log(parents);
-    }, [parents]);
+    }, [parents, currentDragged]);
 
     function handleDragEnd ({over}: {over:any}) {
         if ( over && over.id ) {
-            setParents([...parents, {overId:over.id, techId: activeId}])
+            setParents([...parents, over.id])
+            setCurrentDragged([...currentDragged, {overId: over.id, techId: activeId}])
         }
     }
 
@@ -80,12 +82,11 @@ const Board = () => {
 
                         <Droppable id="droppable">
                             {
-                                parents.length > 0 ? 
+                                currentDragged.length > 0 ? 
                                 (
-                                    parents.map((parent: any, index: number) => {
+                                    currentDragged.map((parent: any, index: number) => {
                                         return (
                                             <div key={index} className='flex bg-blue-200 rounded-lg py-1 px-1'>
-                                                <p>{parent.techId}</p>
                                                 <p>{menuItems.bubbles.menu.filter(mitem => mitem.techId  === parent.techId )[0].title}</p>
                                                 <div>{menuItems.bubbles.menu.filter(mitem => mitem.techId  === parent.techId )[0].icon}</div>
                                             </div>
