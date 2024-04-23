@@ -16,7 +16,7 @@ const Board = () => {
 
     // const [parent, setParent] = useState(null);
 
-    const [parents, setParents]: any = useState([])
+    const [parents, setParents]: any[] = useState([])
     const [activeId, setActiveId] = useState(null);
 
     const [menuItems, setMenuItems] = useState({
@@ -47,7 +47,7 @@ const Board = () => {
 
     function handleDragEnd ({over}: {over:any}) {
         if ( over && over.id ) {
-            setParents([...parents, over.id])
+            setParents([...parents, {overId:over.id, techId: activeId}])
         }
     }
 
@@ -80,9 +80,23 @@ const Board = () => {
 
                         <Droppable id="droppable">
                             {
-                                parents.length > 0 ? parents.length : "DROP HERE FDP"
+                                parents.length > 0 ? 
+                                (
+                                    parents.map((parent: any, index: number) => {
+                                        return (
+                                            <div key={index} className='flex bg-blue-200 rounded-lg py-1 px-1'>
+                                                <p>{parent.techId}</p>
+                                                <p>{menuItems.bubbles.menu.filter(mitem => mitem.techId  === parent.techId )[0].title}</p>
+                                                <div>{menuItems.bubbles.menu.filter(mitem => mitem.techId  === parent.techId )[0].icon}</div>
+                                            </div>
+                                        );
+                                    })
+                                )
+                                : "Drop here"
                             }
                         </Droppable>
+
+                        
 
                     </div>
                     <DragOverlay dropAnimation={null}> {/** here to disable animation, div not "go back" to the menu with animation */}
